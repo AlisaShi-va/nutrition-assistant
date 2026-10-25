@@ -71,7 +71,7 @@ class CalorieFusionModel(nn.Module):
             nn.Linear(128, 1)
         )
 
-        def forward(self, image, text, mass):
+    def forward(self, image, text, mass):
         img_feats = self.image_encoder(image)
         img_proj = self.image_projection(img_feats)
         
@@ -82,7 +82,7 @@ class CalorieFusionModel(nn.Module):
         output = self.classifier(combined)
         return output.squeeze(-1)
 
-    def train(cfg):
+def train(cfg):
     seed_everything(cfg.SEED)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
